@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1 v-if="!hidden">{{ message }}</h1>
+    <p>Length: {{ message.length }}</p>
+    <input type="text" v-model="message">
+    <hr>
+    <button @click="toggleMessage">Hide Message</button>
+  </div>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello World!',
+          hidden: false
+        }
+      },
+      methods: {
+        toggleMessage() {
+          this.hidden = !this.hidden
+        }
+      },
+      mounted() {
+        setTimeout(() => {
+          this.message = 'Hello!'
+        }, 3000)
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+</html>
